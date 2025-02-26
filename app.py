@@ -52,7 +52,7 @@ if not st.session_state.setup_complete:
     if "position" not in st.session_state:
         st.session_state["position"] = "Data Scientist"
     if "company" not in st.session_state:
-        st.session_state["company"] = "Amazon"
+        st.session_state["company"] = "Opentechiz"
 
     col1, col2 = st.columns(2)
     with col1:
@@ -65,7 +65,7 @@ if not st.session_state.setup_complete:
     with col2:
         st.session_state["position"] = st.selectbox(
         "Choose a position",
-        ("Data Scientist", "Data engineer", "ML Engineer", "BI Analyst", "Financial Analyst"))
+        ("Data Scientist", "Data engineer", "Mobile developer"))
 
     st.session_state["company"] = st.selectbox(
         "Choose a Company",
