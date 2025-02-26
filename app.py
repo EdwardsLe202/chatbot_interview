@@ -98,11 +98,11 @@ if st.session_state.setup_complete and not st.session_state.feedback_shown and n
     # Initialize the 'messages' list and add a system message 
     company_description = ""
     if st.session_state["company"] == "Opentechiz":
-        company_description = ("Opentechiz là một công ty phần mềm full-stack tại Hà Nội, chuyên phát triển ứng dụng di động, "
-                           "thương mại điện tử Magento, quản lý Google Cloud và blockchain. Công ty có hơn 100 khách hàng "
-                           "và cam kết cung cấp các giải pháp công nghệ chất lượng cao.")
+        company_description = ("Opentechiz is a full-stack software company in Hanoi, specializing in mobile application development, "
+                           "Magento e-commerce, Google Cloud and blockchain management. The company has more than 100 customers "
+                           "and committed to providing high quality technology solutions.")
 
-    if not st.session_state.messages:
+    if "messages" not in st.session_state or not st.session_state.messages:
         st.session_state.messages = [{
             "role": "system",
             "content": (f"You are an HR executive that interviews an interviewee called {st.session_state['name']} "
@@ -110,6 +110,12 @@ if st.session_state.setup_complete and not st.session_state.feedback_shown and n
                     f"You should interview him for the position {st.session_state['level']} {st.session_state['position']} "
                     f"at the company {st.session_state['company']}. {company_description}")
         }]
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": f"Hello {st.session_state['name']}! I am the recruiter at {st.session_state['company']}. "
+                    f"Today, I will be interviewing you for the {st.session_state['level']} {st.session_state['position']} role. "
+                    f"Let's get started! Could you please introduce yourself briefly?"
+        })
 
     # Display chat messages
     for message in st.session_state.messages:
